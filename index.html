@@ -13,100 +13,93 @@
 
 
 
-<body class="bg-body-tertiary justify-content-center">
-    <div class="container overflow-y-auto mt-3">
-        <div id="signinForm" class="border p-5 d-flex justify-content-center">
-            <form class="form-signin d-flex flex-column">
-                <div class="text-center mb-4">
-                    <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Similique repellendus corrupti laudantium
-                        soluta, enim alias!
-                    </p>
-                </div>
+<body class="bg-body-tertiary">
+    <div class="container d-flex justify-content-center">
+        <div class="form-section">
+            <div class="tabs-container">
+                <button id="tabLogin" type="button" class="auth-tab active-tab">Log In</button>
+                <button id="tabSignup" type="button" class="auth-tab">Sign Up</button>
+            </div>
 
-                <div class="form-div d-flex flex-column gap-3">
-                    <div class="form-label-group">
-                        <label for="inputEmail">Email address</label>
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required
-                            autofocus>
+            <div id="signinForm" class="form-container">
+                <div class="alert alert-danger d-none" id="loginError"></div>
+                <form class="d-flex flex-column gap-3">
+                    <input type="email" id="inputEmail" class="form-control custom-input" placeholder="Enter email"
+                        required autofocus>
+                    <div class="custom-input-group">
+                        <input type="password" id="inputPassword" class="form-control custom-input"
+                            placeholder="Enter password" required>
+                        <span class="input-group-text">
+                            <i class="bi bi-eye" id="loginPassEyeIcon"></i>
+                            <i class="bi bi-eye-slash d-none" id="loginPassEyeSlashIcon"></i>
+                        </span>
                     </div>
-                    <div class="form-label-group">
-                        <label for="inputPassword">Password</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                    </div>
-                </div>
+                    <button class="btn btn-custom-color" type="submit" id="signInBtn">Login</button>
+                    <!-- <div>
+                        <a href="#" class="forgot-link">Forgotten account</a>
+                    </div> -->
+                </form>
+            </div>
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit" id="signInBtn">Sign in</button>
-            </form>
-        </div>
-
-        <div id="signupForm" class="border p-5 d-flex justify-content-center">
-            <form class="needs-validation" novalidate>
-                <div class="row g-3">
-                    <div class="col-12">
-                        <label for="fullName" class="form-label">Full name</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="" value="" required />
-                        <div class="invalid-feedback">
-                            Valid Name is required.
-                        </div>
+            <div id="signupForm" class="form-container d-none">
+                <div class="alert alert-danger d-none" id="signupError"></div>
+                <form class="needs-validation d-flex flex-column gap-3" novalidate>
+                    <div>
+                        <input type="text" class="form-control custom-input" id="fullName" value="" required
+                            placeholder="Full name">
+                        <div class="invalid-feedback d-none" id="fullNameError">Valid Name is required.</div>
                     </div>
-                    <div class="col-12">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com" required />
-                        <div class="invalid-feedback">
-                            Please enter a valid email address for shipping updates.
-                        </div>
+                    <div>
+                        <input type="email" class="form-control custom-input" id="email" placeholder="Email" required>
+                        <div class="invalid-feedback d-none" id="emailError">Please enter a valid email address.</div>
                     </div>
-                    <div class="col-12">
-                        <label for="phoneNumber" class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" required
-                            pattern="^[d]{10}$" />
-                        <div class="invalid-feedback">
-                            Please enter a valid phone number.
-                        </div>
+                    <div>
+                        <input type="text" class="form-control custom-input" id="phoneNumber" placeholder="Phone Number"
+                            required pattern="^[\d]{10}$">
+                        <div class="invalid-feedback d-none" id="phoneNumberError">Please enter a valid phone number.
+                            Phone Number should have 10 digits.</div>
                     </div>
-                    <div class="col-12">
-                        <label for="location" class="form-label">Location / City</label>
-                        <input type="text" class="form-control" id="location" placeholder="1234 Main St" required />
-                        <div class="invalid-feedback">
-                            Please enter your location.
-                        </div>
+                    <div>
+                        <input type="text" class="form-control custom-input" id="location" placeholder="Location / City"
+                            required>
+                        <div class="invalid-feedback d-none" id="locationError">Location/City must contain only
+                            alphabets.</div>
                     </div>
-                    <div class="col-12">
-                        <label for="password" class="form-label">Password</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="password" placeholder="Password" required />
-                            <span class="input-group-text" id="basic-addon2">
-                                <i class="bi bi-eye"></i>
-                                <i class="bi bi-eye-slash"></i>
+                    <div>
+                        <div class="custom-input-group">
+                            <input type="password" class="form-control custom-input" id="password"
+                                placeholder="Password" required>
+                            <span class="input-group-text">
+                                <i class="bi bi-eye" id="passEyeIcon"></i>
+                                <i class="bi bi-eye-slash d-none" id="passEyeSlashIcon"></i>
                             </span>
                         </div>
-                        <div class="invalid-feedback">
-                            Please enter your password.
-                        </div>
+                        <div class="invalid-feedback d-none" id="passwordError">Password should be at least 8 characters
+                            long with a mix of letters and numbers.</div>
                     </div>
-                    <div class="col-12 ">
-                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="confirmPassword"
-                                placeholder="Confirm Password" required />
-                            <span class="input-group-text" id="basic-addon2">
-                                <i class="bi bi-eye"></i>
-                                <i class="bi bi-eye-slash"></i>
+                    <div>
+                        <div class="custom-input-group">
+                            <input type="password" class="form-control custom-input" id="confirmPassword"
+                                placeholder="Confirm Password" required>
+                            <span class="input-group-text">
+                                <i class="bi bi-eye" id="confirmPassEyeIcon"></i>
+                                <i class="bi bi-eye-slash d-none" id="confirmPassEyeSlashIcon"></i>
                             </span>
                         </div>
-                        <div class="invalid-feedback">
-                            Please enter same password
-                        </div>
+                        <div class="invalid-feedback d-none" id="confirmPasswordError">Passwords do not match.</div>
                     </div>
-                </div>
-                <div class="d-flex justify-content-center mt-3">
-                    <button class="w-50 btn btn-primary btn-lg" type="submit">
-                        Sign Up
-                    </button>
-                </div>
-            </form>
+                    <button class="btn btn-custom-color mt-1" type="submit" id="signUpBtn">Sign Up</button>
+                </form>
+            </div>
+
+            <div class="form-container d-none" id="loginMessage">
+                <h3 class="text-center">Login Success</h3>
+                <p class="text-center">You have successfully logged in</p>
+            </div>
+            <div class="form-container d-none" id="signupMessage">
+                <h3 class="text-center">Signup Success</h3>
+                <p class="text-center">You have successfully signed up</p>
+            </div>
         </div>
     </div>
 
