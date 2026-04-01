@@ -39,6 +39,8 @@ const loginMessage = document.getElementById("loginMessage");
 const signupMessage = document.getElementById("signupMessage");
 const signupError = document.getElementById("signupError");
 
+
+
 if (loginTab && signupTab && signinForm && signupForm) {
     loginTab.addEventListener("click", () => {
         loginTab.classList.add("active-tab");
@@ -68,8 +70,10 @@ signInBtn.addEventListener("click", async (e) => {
         const user = await fetch(`https://69ba81c2b3dcf7e0b4bd2e74.mockapi.io/api/v1/users?username=${emailVal}&password=${passwordVal}`);
         const userData = await user.json();
         if (userData.length == 1) {
+            localStorage.setItem('userData', JSON.stringify(userData[0]))
             window.location.href = "tourist-landing.html";
         } else {
+            localStorage.removeItem('userData');
             loginError.classList.remove("d-none");
             loginError.textContent = "Invalid email or password";
         }
